@@ -10,6 +10,8 @@ const csrf = require('csurf')
 const path = require('path')
 const routes = require('./routes')
 
+const {checkError, captureCsrfToken} = require('./src/middlewares/middlewares')
+
 const app = express()
 
 app.set('views', path.resolve(__dirname, 'src', 'views'))
@@ -32,6 +34,7 @@ const sessionConfig = session({
 })
 app.use(sessionConfig)
 app.use(flash())
+app.use(csrf())
 
 mongoose.connect(process.env.CONNECTIONSTRING)
 .then(() => {
@@ -43,7 +46,11 @@ mongoose.connect(process.env.CONNECTIONSTRING)
     }
 )
 
-//meus proprios middlewares
+//meus  middlewares
+app.use(captureCsrfToken)
+app.use(checkError)
+
+app.use(routes)
 
 app.on('ready', () => {
     app.listen(3000, () => {
