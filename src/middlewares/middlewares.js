@@ -1,3 +1,10 @@
+exports.varGrabber = (req, res, next) =>{
+    res.locals.errors = req.flash('errors')
+    res.locals.success = req.flash('success')
+    next()
+}
+
+
 exports.checkError = (err, req, res, next) => {
     if(err) res.render('404')
 }
