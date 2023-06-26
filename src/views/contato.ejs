@@ -1,0 +1,37 @@
+<%- include('includes/header') %>
+<%- include('includes/nav') %>
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-2"></div>
+        <div class="col-lg-8 my-3">
+            <h1 class="text-center">Contato</h1>
+            <p class="lead text-center">Crie ou edite um novo contato</p>
+
+        <div class="row">
+            <div class="col-lg my-3">
+                <form class="my-4" action="/contato/register" method="POST">
+                    <input type="hidden" name="_csrf" value="<%- csrfToken %>">
+                    <div class="form-group">
+                        <label for="exampleInputName">Nome</label>
+                        <input type="text" class="form-control" id="exampleInputName" aria-describedby="nameHelp" name="nome">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputSobreName">Sobrenome</label>
+                        <input type="text" class="form-control" id="exampleInputSobreName" aria-describedby="sobrenameHelp" name="Sobrenome">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputTel">Telefone</label>
+                        <input type="tel" class="form-control" id="exampleInputTel" name="telefone">
+                    </div>
+
+                    <button type="submit" class="btn btn-dark">Salvar</button>
+                  </form>
+            </div>
+        </div>
+        <div class="col-lg-2"></div>
+    </div>
+</div>
+
+<%- include('includes/footer') %>
+

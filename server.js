@@ -10,7 +10,7 @@ const csrf = require('csurf')
 const path = require('path')
 const routes = require('./routes')
 
-const {sessionUserFetcher ,checkError, captureCsrfToken} = require('./src/middlewares/middlewares')
+const {varGrabber ,sessionUserFetcher ,checkError, captureCsrfToken} = require('./src/middlewares/middlewares')
 
 const app = express()
 
@@ -47,6 +47,7 @@ mongoose.connect(process.env.CONNECTIONSTRING)
 )
 
 //meus  middlewares
+app.use(varGrabber)
 app.use(sessionUserFetcher)
 app.use(captureCsrfToken)
 app.use(checkError)
