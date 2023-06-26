@@ -5,11 +5,13 @@ const loginController = require('./src/controllers/loginController')
 const {varGrabber} = require('./src/middlewares/middlewares')
 
 
-route.get("/", homeController.index)
+route.get("/", varGrabber, homeController.index)
 
-// rotas de login 
+// rotas de login   
 
 route.get('/login', varGrabber, loginController.index)
+route.post('/login/login', loginController.login)
 route.post('/login/register', loginController.register)
+route.get('/login/logout', loginController.logout)
 
 module.exports = route

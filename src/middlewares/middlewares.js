@@ -4,6 +4,10 @@ exports.varGrabber = (req, res, next) =>{
     next()
 }
 
+exports.sessionUserFetcher = (req, res, next) =>{
+    res.locals.user = req.session.user
+    next()
+}
 
 exports.checkError = (err, req, res, next) => {
     if(err) res.render('404')

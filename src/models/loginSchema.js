@@ -18,9 +18,27 @@ class Login {
         this.user = null
     }
 
+    async login(){
+        this.validate()
+        if(this.errors.length > 0) return
+
+        this.user = await this.isUserExists()
+
+        if(!this.user) {
+            this.errors.push('Usuário não encontrado')
+            return
+        }
+
+        if(!bcrypt.compareSync(this.body.password, this.user.password)){
+            this.errors.push('Senha inválida')
+            this.user = null
+            return
+        }
+    }
+
     async register(){
         this.validate()
-        await this.userExists()
+        await this.isUserCreated()
 
         if(this.errors.length === 0){
             const salt = bcrypt.genSaltSync()
@@ -34,8 +52,13 @@ class Login {
         }
     }
 
-    async userExists(){
-        this.user = await loginModel.findOne({email: this.body.email})
+    async isUserExists(){
+        const user = await loginModel.findOne({email: this.body.email})
+        return user
+    }
+
+    async isUserCreated(){
+        this.user = await this.isUserExists()
         if(this.user) this.errors.push('Email já cadastrado!')
     }
 
