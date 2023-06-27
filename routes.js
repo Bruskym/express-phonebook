@@ -17,5 +17,8 @@ route.get('/login/logout', loginController.logout)
 // rotas cadastro telefone
 
 route.get('/contato', loginRequired, contatoController.index)
+route.post('/contato/register', loginRequired, contatoController.register)
+route.get('/contato/:id', loginRequired, contatoController.editIndex)
+route.post('/contato/edit/:id', loginRequired, contatoController.edit)
 
 module.exports = route

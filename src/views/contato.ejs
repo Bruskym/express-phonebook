@@ -8,25 +8,32 @@
             <h1 class="text-center">Contato</h1>
             <p class="lead text-center">Crie ou edite um novo contato</p>
 
+            <%- include('includes/error') %>
+            <%- include('includes/success') %>
+
         <div class="row">
             <div class="col-lg my-3">
-                <form class="my-4" action="/contato/register" method="POST">
+                <% if(contato._id) { %>
+                <form action="/contato/edit/<%= contato._id %>" method="POST">
+                <% } else { %>
+                <form action="/contato/register" method="POST">
+                <% } %>
                     <input type="hidden" name="_csrf" value="<%- csrfToken %>">
                     <div class="form-group">
                         <label for="exampleInputName">Nome</label>
-                        <input type="text" class="form-control" id="exampleInputName" aria-describedby="nameHelp" name="nome">
+                        <input type="text" class="form-control" id="exampleInputName" aria-describedby="nameHelp" name="nome" value="<%= contato.nome %>">
                     </div>
                     <div class="form-group">
                         <label for="exampleInputSobreName">Sobrenome</label>
-                        <input type="text" class="form-control" id="exampleInputSobreName" aria-describedby="sobrenameHelp" name="Sobrenome">
+                        <input type="text" class="form-control" id="exampleInputSobreName" aria-describedby="sobrenameHelp" name="sobrenome" value="<%= contato.sobrenome %>">
                     </div>
                     <div class="form-group">
                         <label for="exampleInputTel">Telefone</label>
-                        <input type="tel" class="form-control" id="exampleInputTel" name="telefone">
+                        <input type="tel" class="form-control" id="exampleInputTel" name="telefone" value="<%= contato.telefone %>">
                     </div>
 
                     <button type="submit" class="btn btn-dark">Salvar</button>
-                  </form>
+                </form>
             </div>
         </div>
         <div class="col-lg-2"></div>
