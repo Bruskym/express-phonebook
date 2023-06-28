@@ -20,7 +20,7 @@ exports.captureCsrfToken = (req, res, next) => {
 
 exports.loginRequired = (req, res, next) => {
     if(!req.session.user){
-        req.flash('errors', 'Você precisa estar logado para adicionar um novo contato')
+        req.flash('errors', 'Você precisa estar logado para mexer nos contatos')
         req.session.save(() => { return res.redirect('/') }) 
         return
     }

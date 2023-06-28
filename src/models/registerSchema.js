@@ -17,10 +17,21 @@ class Contact{
         this.contact = null
     }
 
+    static async listContacts(){
+        const contact = await contactModel.find().sort({'criadoEm':-1})
+        return contact
+    }
+
     static async findbyID(id){
         if(typeof(id) !== 'string') return 
-        const user = await contactModel.findById(id)
-        return user
+        const contact = await contactModel.findById(id)
+        return contact
+    }
+
+    static async removebyID(id){
+        if(typeof(id) !== 'string') return 
+        const contact = await contactModel.findOneAndDelete({_id : id})
+        return contact
     }
 
     async register(){
