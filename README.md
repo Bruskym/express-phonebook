@@ -2,12 +2,14 @@
 
 Agenda telefonica criada com o intuito de entender o funcionamemto do framework Express.js, assim como estudar sua integração com a template engine para JavaScript EJS
 
-## Tecnologias utilizadas
-<ul>
-  <li>HTML</li>
-  <li>CSS</li>
-  <li>JavaScript</li>
-</ul>
+## 👨‍💻️ Tecnogias utilizadas
+
+O projeto foi desenvolvido utilizando as seguintes tecnologias:
+
+- [Express](https://expressjs.com)
+- [Mongoose](https://mongoosejs.com)
+- [EJS](https://ejs.co)
+
 
 ## Funcionalidades
 <ul>
